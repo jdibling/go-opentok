@@ -7,6 +7,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"log"
 	"math/rand"
 	"net/http"
 	"net/url"
@@ -147,6 +148,7 @@ func (ot *OpenTok) CreateSessionContext(ctx context.Context, opts *SessionOption
 	if err != nil {
 		return nil, err
 	}
+	log.Printf("Session JWT: %s\n", jwt)
 
 	req, err := http.NewRequest("POST", ot.apiHost+sessionCreateURL, strings.NewReader(params.Encode()))
 	if err != nil {
